@@ -431,6 +431,8 @@ class PlayState extends MusicBeatState
 		startHScriptsNamed('stages/' + curStage + '.hx');
 		#end
 
+		var speakers:FlxSprite;
+
 		if (!stageData.hide_girlfriend)
 		{
 			if(SONG.gfVersion == null || SONG.gfVersion.length < 1) SONG.gfVersion = 'gf'; //Fix for the Chart Editor
@@ -439,6 +441,13 @@ class PlayState extends MusicBeatState
 			gf.scrollFactor.set(0.95, 0.95);
 			gfGroup.add(gf);
 			startCharacterScripts(gf.curCharacter);
+
+		        if (SONG.player1 == 'bf-eevee')
+			SONG.gfVersion = 'gf-vulpix';
+			speakers.frames = Paths.getSparrowAtlas('SpeakersOnly');
+     			speakers.setPosition(GF_X, GF_Y);
+			speakers.animation.addByIndices('danceLeft', 'GF Dancing Beat0', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
+			speakers.animation.addByIndices('danceRight', 'GF Dancing Beat0', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
 		}
 
 		dad = new Character(0, 0, SONG.player2);
